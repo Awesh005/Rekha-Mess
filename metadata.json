@@ -1,0 +1,6 @@
+{
+  "name": "Rekha Mess",
+  "description": "Ghar Ka Bana Khana \u2014 Swad, Swachh Aur Bharpet. Tiffin Service in Ranchi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

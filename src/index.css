@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-rekha-maroon: #7B1A1A;
+  --color-rekha-maroon-dark: #5A1212;
+  --color-rekha-gold: #D4AF37;
+  --color-rekha-gold-light: #E7C65F;
+  --color-rekha-cream: #FFF8E7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-rekha-cream);
+  color: #333333;
+}
+
+@keyframes steam {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-15px) translateX(-4px);
+  }
+  50% {
+    transform: translateY(-30px) translateX(4px);
+  }
+  75% {
+    transform: translateY(-45px) translateX(-4px);
+  }
+  100% {
+    transform: translateY(-60px) translateX(0);
+    opacity: 0;
+  }
+}
+
+.animate-steam-1 {
+  animation: steam 2.5s infinite ease-in-out;
+}
+.animate-steam-2 {
+  animation: steam 2.5s infinite ease-in-out 0.3s;
+}
+.animate-steam-3 {
+  animation: steam 2.5s infinite ease-in-out 0.6s;
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+
+/* =========================================
+   LIQUID GLASS NAV BACKGROUND VARS & STYLES
+   ========================================= */
+:root {
+  /* Echtes Liquid Glass - Light Mode */
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-shadow: rgba(0, 0, 0, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 1);
+  --glass-caustic: rgba(255, 255, 255, 0.4);
+  --reflection-start: rgba(255, 255, 255, 0.8);
+  --reflection-end: rgba(255, 255, 255, 0.0);
+  --glare-color: rgba(255, 255, 255, 0.9);
+  
+  /* Slider Pill & Icons */
+  --pill-bg: rgba(255, 255, 255, 0.95);
+  --pill-shadow: 0 4px 12px rgba(123, 26, 26, 0.1), 0 1px 2px rgba(123, 26, 26, 0.05), inset 0 1px 1px rgba(255,255,255,1);
+  --icon-color: rgba(0, 0, 0, 0.6);
+  --icon-active: var(--color-rekha-maroon);
+}
+
+.liquid-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 99px;
+  
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  
+  box-shadow: 
+      0 30px 60px -15px var(--glass-shadow),
+      0 10px 25px -5px var(--glass-shadow),
+      inset 0 2px 3px -1px var(--glass-highlight),
+      inset 0 -2px 4px -1px var(--glass-caustic),
+      inset 0 0 0 1px var(--glass-border);
+      
+  transition: all 0.5s ease;
+  z-index: 10;
+}
+
+.liquid-nav::before {
+  content: '';
+  position: absolute;
+  top: 1px; left: 1px; right: 1px; height: 46%;
+  border-radius: 99px 99px 24px 24px / 99px 99px 12px 12px;
+  background: linear-gradient(180deg, var(--reflection-start) 0%, var(--reflection-end) 100%);
+  pointer-events: none;
+  z-index: 6; 
+  transition: background 0.5s ease;
+}
+
+.liquid-glare-container {
+  position: absolute;
+  inset: 0;
+  border-radius: 99px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.liquid-glare {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle 90px at var(--x, 50%) var(--y, 50%), var(--glare-color) 0%, transparent 100%);
+  mix-blend-mode: overlay;
+}
+
+.liquid-nav:hover .liquid-glare {
+  opacity: 1;
+}
+
+.nav-items {
+  position: relative;
+  display: flex;
+  gap: 2px;
+  z-index: 3;
+}
+
+.active-pill {
+  position: absolute;
+  top: 0; left: 0; 
+  height: 100%;
+  background: var(--pill-bg);
+  border-radius: 99px;
+  box-shadow: var(--pill-shadow);
+  transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), 
+              width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1),
+              background 0.5s ease, box-shadow 0.5s ease;
+  z-index: 1; 
+}
+
+.nav-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0 16px;
+  height: 48px; 
+  border-radius: 99px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--icon-color);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.3s ease;
+  outline: none;
+  z-index: 2;
+  text-decoration: none;
+}
+
+@media (min-width: 640px) {
+  .nav-btn {
+      padding: 0 24px;
+      height: 52px;
+      font-size: 15px;
+  }
+}
+
+.btn-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  height: 100%;
+}
+
+@media (max-width: 380px) {
+  .nav-btn {
+      padding: 0 12px;
+  }
+  .btn-content span {
+      display: none;
+  }
+}
+
+.nav-btn:active .btn-content {
+  transform: scale(0.92);
+}
+
+.nav-btn.active {
+  color: var(--icon-active);
+}
+
+/* WhatsApp floating button animations */
+@keyframes waPulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes waBounceIn {
+  0% { transform: translateY(100px) scale(1); opacity: 0; }
+  60% { transform: translateY(-10px) scale(1); opacity: 1; }
+  80% { transform: translateY(5px) scale(1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.wa-btn-container {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  animation: waBounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@media (min-width: 640px) {
+  .wa-btn-container {
+    bottom: 24px;
+  }
+}
+
+.wa-btn {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+.wa-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(37, 211, 102, 0.4);
+}
+
+.wa-btn-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #25D366;
+  border-radius: 50%;
+  z-index: 0;
+  animation: waPulse 3s infinite ease-out;
+}
+
+.menu-tab-inactive {
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.menu-tab-inactive:hover {
+  transform: scale(1.05);
+}
+
+.menu-tab-inactive::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--color-rekha-maroon);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.menu-tab-inactive:hover::after {
+  width: 60%;
+}
+
+.menu-tab-active {
+  position: relative;
+  background-color: var(--color-rekha-gold);
+  color: var(--color-rekha-maroon);
+  border-bottom: 3px solid #b89326;
+  overflow: hidden;
+  transform: scale(1.05);
+}
+
+.menu-tab-active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-20deg);
+  animation: tabShimmer 2.5s infinite;
+}
+
+@keyframes tabShimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes slideOutLeft {
+  0% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(-30px); }
+}
+
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.menu-content-leave {
+  animation: slideOutLeft 0.35s ease forwards;
+}
+
+.menu-content-enter {
+  animation: slideInRight 0.35s ease forwards;
+}
+
+
