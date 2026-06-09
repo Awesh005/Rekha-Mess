@@ -83,6 +83,13 @@ export default function App() {
               WhatsApp Order
             </a>
             <a 
+              href="tel:+919572278257" 
+              className="flex items-center justify-center gap-2 bg-rekha-maroon hover:bg-rekha-maroon-dark text-white px-5 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              <Phone size={18} className="md:w-6 md:h-6" />
+              Call Now
+            </a>
+            <a 
               href="#menu" 
               className="flex items-center justify-center gap-2 bg-transparent hover:bg-rekha-gold hover:text-rekha-maroon border-2 border-rekha-gold text-rekha-gold px-5 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-lg transition-all shadow-lg backdrop-blur-sm"
             >
@@ -172,15 +179,24 @@ export default function App() {
               <span className="inline-block w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-rekha-gold"></span> Free Delivery
               <span className="inline-block w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-rekha-gold ml-2"></span> 7 Days a Week
             </p>
-            <a 
-              href={whatsappLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 md:gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full sm:w-auto"
-            >
-              <MessageCircle size={20} className="md:w-7 md:h-7" />
-              Book Your Tiffin Now
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <a 
+                href={whatsappLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 md:gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex-1"
+              >
+                <MessageCircle size={20} className="md:w-7 md:h-7" />
+                Book Your Tiffin Now
+              </a>
+              <a 
+                href="tel:+919572278257" 
+                className="inline-flex items-center justify-center gap-2 md:gap-3 bg-rekha-maroon hover:bg-rekha-maroon-dark text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex-1"
+              >
+                <Phone size={20} className="md:w-7 md:h-7" />
+                Call to Order
+              </a>
+            </div>
           </div>
         </div>
       </section>
